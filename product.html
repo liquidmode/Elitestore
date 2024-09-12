@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Flipkart Clone</h1>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="#">Products</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="cart-icon">
+                <a href="cart.html">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span id="cart-count">0</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <section class="product-details">
+                <img src="https://via.placeholder.com/300?text=Product+Details" alt="Product Details">
+                <h2 id="product-name">Product Details</h2>
+                <p id="product-description">Description of the product goes here.</p>
+                <p id="product-price">Price: $10.00</p>
+                <button onclick="addToCart()">Add to Cart</button>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Flipkart Clone. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        function addToCart() {
+            let cartCount = parseInt(localStorage.getItem('cartCount') || 0);
+            cartCount++;
+            localStorage.setItem('cartCount', cartCount);
+            alert('Product added to cart!');
+            document.getElementById('cart-count').textContent = cartCount;
+        }
+
+        function updateProductDetails() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const productId = urlParams.get('id');
+            
+            // Normally you would fetch product details from an API or database
+            const products = {
+                1: { name: 'Product 1', description: 'Description for Product 1', price: '$10.00', image: 'logo.png' },
+                2: { name: 'Product 2', description: 'Description for Product 2', price: '$20.00', image: 'logo.png' },
+                3: { name: 'Product 3', description: 'Description for Product 3', price: '$30.00', image: 'logo.png' },
+                // Add other products similarly
+            };
+
+            const product = products[productId];
+            if (product) {
+                document.getElementById('product-name').textContent = product.name;
+                document.getElementById('product-description').textContent = product.description;
+                document.getElementById('product-price').textContent = `Price: ${product.price}`;
+                document.querySelector('.product-details img').src = product.image;
+            }
+        }
+
+        updateProductDetails();
+
+        function updateCartCount() {
+            const cartCount = localStorage.getItem('cartCount') || 0;
+            document.getElementById('cart-count').textContent = cartCount;
+        }
+
+        updateCartCount();
+    </script>
+</body>
+</html>

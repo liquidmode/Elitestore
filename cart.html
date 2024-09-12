@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Flipkart Clone</h1>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="#">Products</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="cart-icon">
+                <a href="cart.html">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span id="cart-count">0</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <section class="cart">
+                <h2>Your Cart</h2>
+                <div id="cart-items">
+                    <!-- Cart items will be listed here -->
+                </div>
+                <div class="total">
+                    <h3>Total: $<span id="total-price">0.00</span></h3>
+                </div>
+              
+                <button onclick="checkout()">Checkout</button>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Flipkart Clone. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        function displayCart() {
+            const cartCount = localStorage.getItem('cartCount') || 0;
+            document.getElementById('cart-count').textContent = cartCount;
+    
+            // Simulate cart items
+            let totalPrice = cartCount * 10; // Assuming each product costs $10
+            document.getElementById('cart-items').innerHTML = `
+                <p>Product 1 - $10.00 x ${cartCount}</p>
+            `;
+            document.getElementById('total-price').textContent = totalPrice.toFixed(2);
+        }
+    
+        function checkout() {
+            // Redirect to the checkout page
+            window.location.href = 'checkout.html';
+        }
+    
+        document.getElementById('checkout-button').addEventListener('click', checkout);
+    
+        displayCart();
+    </script>
+    
+</body>
+</html>
